@@ -1,0 +1,7 @@
+{
+  "name": "GestionPuntos",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
