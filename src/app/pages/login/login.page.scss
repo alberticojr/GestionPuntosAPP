@@ -1,0 +1,53 @@
+.login-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.login-container {
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  padding: 40px;
+  border: 2px solid grey;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 5%;
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+}
+
+.login-container ion-item {
+  margin-bottom: 15px;
+}
+
+.login-container ion-button {
+  margin-top: 10px;
+}
+
+.password-toggle {
+  font-size: 22px;
+  cursor: pointer;
+  align-self: center; // <-- centra verticalmente dentro de ion-item
+  color: var(--ion-color-medium);
+  transition: 0.15s ease-in-out;
+}
+
+.password-toggle:hover {
+  color: var(--ion-color-primary);
+  scale: 1.2;
+}
+
+.register-text {
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.register-text a {
+  color: var(--ion-color-primary);
+  text-decoration: none;
+  font-weight: bold;
+}

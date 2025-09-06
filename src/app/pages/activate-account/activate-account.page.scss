@@ -1,0 +1,92 @@
+/* ===== Fondo general ===== */
+.success-content {
+  --background: var(--color-fondo);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* ===== Tarjeta central ===== */
+.success-card {
+  background: var(--color-card);
+  border: 1px solid #e0d3c2;
+  box-shadow: var(--shadow-fuerte);
+  border-radius: 20px;
+  max-width: 420px;
+  text-align: center;
+  padding: 32px 24px;
+  animation: fadeInScale 0.6s ease-out;
+}
+
+/* ===== Icono check ===== */
+.checkmark ion-icon {
+  font-size: 5rem;
+  color: var(--color-principal);
+  animation: popIn 0.7s ease forwards;
+}
+
+/* ===== Texto ===== */
+.success-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-secundario);
+  margin-top: 16px;
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+.success-message {
+  font-size: 1rem;
+  color: var(--color-texto);
+  margin: 12px 0 24px;
+  animation: fadeInUp 0.6s ease 0.4s both;
+}
+
+/* ===== Botón ===== */
+.success-button {
+  --background: var(--color-principal);
+  --color: #fff;
+  font-weight: bold;
+  border-radius: 12px;
+  box-shadow: var(--shadow-suave);
+  animation: fadeInUp 0.6s ease 0.6s both;
+}
+
+/* ===== Animaciones ===== */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-30deg);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1.1) rotate(5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

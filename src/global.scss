@@ -35,3 +35,16 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+:root {
+  --color-principal: #d35400; /* naranja hamburguesa */
+  --color-principal-2: #e67e22; /* naranja claro */
+  --color-secundario: #4a2c2a; /* marrón madera */
+  --color-fondo: #f8f4ef; /* beige cálido */
+
+  /* === Nuevos añadidos === */
+  --color-card: #ffffff; /* tarjetas claras con contraste suave */
+  --color-texto: #5a4a42; /* texto marrón-grisáceo legible */
+  --shadow-suave: 0px 2px 6px rgba(0, 0, 0, 0.1); /* sombra ligera */
+  --shadow-fuerte: 0px 6px 16px rgba(0, 0, 0, 0.2); /* sombra intensa */
+}

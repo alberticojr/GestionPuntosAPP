@@ -1,0 +1,49 @@
+import { Component, OnInit } from '@angular/core';
+import { UserService, User } from '../../../services/user.service';
+import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
+  standalone: false,
+})
+export class HomePage implements OnInit {
+  user: User | null = null;
+  combosArray: any[] = []; // Ejemplo de array de combos
+  pointsArray: any[] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; // Ejemplo de array de puntos
+
+  constructor(
+    private userService: UserService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    // Suponemos que el AuthService tiene un método para obtener el ID del usuario actual
+    const userId = this.userService.getCurrentUserId();
+    console.log('User ID:', userId);
+    if (userId) {
+      this.userService.getUserById(userId).subscribe({
+        next: (res) => {
+          this.user = res;
+          this.combosArray = Array.from(
+            { length: this.user.combos },
+            (_, i) => i
+          );
+        },
+        error: (err) => {
+          console.error('Error al obtener usuario:', err);
+        },
+      });
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.user = null;
+    this.router.navigate(['/login']);
+    console.log('Usuario desconectado');
+  }
+}

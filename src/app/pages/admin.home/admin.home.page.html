@@ -1,0 +1,76 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="header-toolbar">
+    <ion-title class="header-title">Administración</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="header-button" (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false">
+  <div class="admin-content">
+    <!-- Barra de búsqueda -->
+    <ion-searchbar
+      placeholder="Buscar por nombre, apellido o email"
+      [(ngModel)]="searchTerm"
+      (ionInput)="onSearchChange($event)"
+      debounce="500"
+    >
+    </ion-searchbar>
+
+    <!-- Lista de usuarios -->
+    <ion-list class="user-list">
+      <ion-card class="user-card" *ngFor="let user of allUsers">
+        <ion-card-content
+          class="user-card-content"
+          (click)="goToProfile(user._id)"
+        >
+          <div class="user-item">
+            <!-- Icono de usuario -->
+            <div class="user-avatar">
+              <ion-icon name="person-circle-outline"></ion-icon>
+            </div>
+
+            <!-- Nombre y correo -->
+            <div class="user-info">
+              <h2 class="user-name">{{ user.name }} {{ user.surname }}</h2>
+              <p class="user-email">{{ user.email }}</p>
+            </div>
+
+            <!-- Puntos y combos -->
+            <div>
+              <p><strong>Puntos:</strong> {{ user.points }}</p>
+              <p><strong>Combos:</strong> {{ user.combos }}</p>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+
+    <!-- Paginación -->
+    <ion-footer>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="prevPage()" [disabled]="currentPage === 1">
+            Anterior
+          </ion-button>
+        </ion-buttons>
+
+        <ion-title class="ion-text-center">
+          Página {{ currentPage }} / {{ totalPages }}
+        </ion-title>
+
+        <ion-buttons slot="end">
+          <ion-button
+            (click)="nextPage()"
+            [disabled]="currentPage === totalPages"
+          >
+            Siguiente
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+  </div>
+</ion-content>

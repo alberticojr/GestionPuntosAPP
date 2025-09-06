@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Inicio</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false">
+  <div class="home-content">
+    <div class="user-card" *ngIf="user">
+      <h2>Bienvenido, {{ user.name }} {{ user.surname }}</h2>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Tipo:</strong> {{ user.type }}</p>
+
+      <!-- Puntos en círculos -->
+      <h2>Puntos</h2>
+      <div class="points-container">
+        <div
+          *ngFor="let point of pointsArray; let i = index"
+          [class.filled]="i < user.points % 10"
+          class="point"
+        ></div>
+      </div>
+
+      <!-- Combos con iconos -->
+      <h2>Combos</h2>
+
+      @if (user.combos === 0) {
+      <p>No tienes combos aún. ¡Sigue acumulando puntos!</p>
+      } @else {
+
+      <div class="combos-container">
+        @for (combo of combosArray; track combo._id) {
+        <div class="combo-container">
+          <ion-icon name="trophy" class="combo-icon"> </ion-icon>
+        </div>
+        }
+      </div>
+      }
+    </div>
+
+    <div *ngIf="!user">
+      <p>Cargando datos del usuario...</p>
+    </div>
+  </div>
+</ion-content>

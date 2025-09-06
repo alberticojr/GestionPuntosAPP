@@ -1,0 +1,22 @@
+<ion-content [fullscreen]="true">
+  <div class="success-content">
+    <div class="success-card">
+      <!-- Animación check -->
+      <div class="checkmark">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+      </div>
+
+      <!-- Mensaje principal -->
+      <h2 class="success-title">¡Cuenta activada!</h2>
+      <p class="success-message">
+        Tu cuenta se ha activado correctamente. Ya puedes disfrutar de todas las
+        funcionalidades.
+      </p>
+
+      <!-- Botón de acción -->
+      <ion-button expand="block" class="success-button" (click)="goToLogin()">
+        Ir al panel principal
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

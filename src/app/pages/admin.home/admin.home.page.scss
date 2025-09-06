@@ -1,0 +1,126 @@
+/* ===== Layout General ===== */
+.admin-content {
+  --background: var(--color-fondo);
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  //border: 2px solid gold;
+}
+
+/* ===== Header ===== */
+.header-toolbar {
+  --background: var(--color-secundario);
+  --color: white;
+}
+
+.header-title {
+  font-weight: bold;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+.header-button ion-icon {
+  font-size: 1.5rem;
+  color: #f39c12;
+}
+
+/* ===== Sección búsqueda ===== */
+.search-section {
+  margin: 16px 0;
+  //border: 2px solid gold;
+}
+
+.searchbar-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.searchbar-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-secundario);
+}
+
+.searchbar-input {
+  max-width: 420px;
+  width: 100%;
+  margin: 8px auto;
+  border-radius: 12px;
+  --background: #fff;
+  box-shadow: var(--shadow-suave);
+}
+
+/* ===== Lista de usuarios ===== */
+.user-list {
+  margin-top: 20px;
+  //border: 2px solid gold;
+}
+
+/* ===== Tarjeta usuario ===== */
+.user-card {
+  max-width: 500px;
+  margin: 16px 16px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-suave);
+  background: var(--color-card);
+  border: 1px solid #e0d3c2;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-fuerte);
+}
+
+.user-card-content {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* ===== Item interno ===== */
+.user-item {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+/* Avatar/Icono */
+.user-avatar ion-icon {
+  font-size: 3rem;
+  color: var(--color-principal);
+}
+
+/* Información principal */
+.user-info {
+  margin-left: 12px;
+}
+
+.user-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0;
+  color: var(--color-secundario);
+}
+
+.user-email {
+  font-size: 0.9rem;
+  color: var(--color-texto);
+  margin: 4px 0 0;
+}
+
+/* Stats (puntos y combos) */
+.user-stats p {
+  margin: 2px 0;
+  font-size: 0.9rem;
+  color: var(--color-principal);
+  font-weight: 500;
+}
