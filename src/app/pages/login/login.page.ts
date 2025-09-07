@@ -25,7 +25,7 @@ export class LoginPage {
       .login({ email: this.email, password: this.password })
       .subscribe({
         next: (res) => {
-          console.log('Usuario logueado:', res.user);
+          //console.log('Usuario logueado:', res.user);
 
           if (res.user.type === 'admin') {
             this.router.navigate(['/admin.home']);

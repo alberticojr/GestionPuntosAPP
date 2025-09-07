@@ -20,9 +20,8 @@ export class ProfilePage implements OnInit {
     const userId = this.route.snapshot.paramMap.get('id');
     if (userId) {
       this.userService.getUserById(userId).subscribe({
-        next: (res) => (
-          (this.user = res), console.log('Usuario cargado:', this.user)
-        ),
+        next: (res) =>
+          (this.user = res), //console.log('Usuario cargado:', this.user)
 
         error: (err) => console.error('Error al obtener usuario', err),
       });
@@ -34,7 +33,7 @@ export class ProfilePage implements OnInit {
       this.userService.addPoints(userId, amount).subscribe({
         next: (res) => {
           this.user = res;
-          console.log('Puntos añadidos:', this.user);
+          //console.log('Puntos añadidos:', this.user);
         },
         error: (err) => console.error('Error al añadir puntos', err),
       });
@@ -46,7 +45,7 @@ export class ProfilePage implements OnInit {
       this.userService.subtractPoints(userId, amount).subscribe({
         next: (res) => {
           this.user = res;
-          console.log('Puntos restados:', this.user);
+          //console.log('Puntos restados:', this.user);
         },
         error: (err) => console.error('Error al restar puntos', err),
       });
@@ -58,7 +57,7 @@ export class ProfilePage implements OnInit {
       this.userService.addCombo(userId, amount).subscribe({
         next: (res) => {
           this.user = res;
-          console.log('Combos añadidos:', this.user);
+          //console.log('Combos añadidos:', this.user);
         },
         error: (err) => console.error('Error al añadir combos', err),
       });
@@ -70,7 +69,7 @@ export class ProfilePage implements OnInit {
       this.userService.subtractCombo(userId, amount).subscribe({
         next: (res) => {
           this.user = res;
-          console.log('Combos restados:', this.user);
+          //console.log('Combos restados:', this.user);
         },
         error: (err) => console.error('Error al restar combos', err),
       });

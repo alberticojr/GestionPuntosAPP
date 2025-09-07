@@ -23,7 +23,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
     // Suponemos que el AuthService tiene un método para obtener el ID del usuario actual
     const userId = this.userService.getCurrentUserId();
-    console.log('User ID:', userId);
+    //console.log('User ID:', userId);
     if (userId) {
       this.userService.getUserById(userId).subscribe({
         next: (res) => {
@@ -44,6 +44,6 @@ export class HomePage implements OnInit {
     localStorage.removeItem('token');
     this.user = null;
     this.router.navigate(['/login']);
-    console.log('Usuario desconectado');
+    //console.log('Usuario desconectado');
   }
 }

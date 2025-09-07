@@ -117,7 +117,7 @@ export class RegisterPage {
       })
       .subscribe({
         next: (res: RegisterResponse) => {
-          console.log('Respuesta del backend:', res.message);
+          //console.log('Respuesta del backend:', res.message);
           alert(
             'Registro exitoso. Revisa tu correo electrónico para activar tu cuenta.'
           );

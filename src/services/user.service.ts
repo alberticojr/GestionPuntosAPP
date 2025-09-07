@@ -36,7 +36,7 @@ export class UserService {
 
   private getAuthHeaders() {
     const token = this.getToken();
-    console.log('Token recibido en el front:', token);
+    //console.log('Token recibido en el front:', token);
     return token ? { headers: { Authorization: `Bearer ${token}` } } : {};
   }
 

@@ -29,8 +29,8 @@ export class AdminHomePage implements OnInit {
 
   ngOnInit() {
     this.loadUsers();
-    console.log(this.allUsers);
-    console.log('AdminHomePage cargada: ' + this.authService.isAdmin());
+    //console.log(this.allUsers);
+    //console.log('AdminHomePage cargada: ' + this.authService.isAdmin());
   }
 
   // Cargar usuarios desde backend
@@ -78,7 +78,7 @@ export class AdminHomePage implements OnInit {
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
-    console.log('Usuario desconectado');
+    //console.log('Usuario desconectado');
   }
 
   // Navegación de páginas

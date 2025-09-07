@@ -105,6 +105,6 @@ export class ResetPasswordPage implements OnInit {
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
-    console.log('Usuario desconectado');
+    //console.log('Usuario desconectado');
   }
 }
