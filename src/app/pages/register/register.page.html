@@ -1,38 +1,96 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Registro</ion-title>
+  <ion-toolbar class="header-toolbar">
+    <ion-title class="header-title">Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="register-content">
-  <div class="register-container">
-    <h2>Crea tu cuenta</h2>
+<ion-content [fullscreen]="false">
+  <div class="register-content">
+    <div class="register-container">
+      <!-- Icono superior -->
+      <div class="register-icon">
+        <ion-icon name="person-add-outline"></ion-icon>
+      </div>
 
-    <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text" [(ngModel)]="name"></ion-input>
-    </ion-item>
+      <h2>Crea tu cuenta</h2>
 
-    <ion-item>
-      <ion-label position="floating">Apellido</ion-label>
-      <ion-input type="text" [(ngModel)]="surname"></ion-input>
-    </ion-item>
+      <div class="register-form">
+        <!-- Nombre -->
+        <ion-item [class.invalid-input]="!isNameValid">
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input
+            type="text"
+            [(ngModel)]="name"
+            (ionInput)="validateName()"
+          ></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" [(ngModel)]="email"></ion-input>
-    </ion-item>
+        <!-- Apellido -->
+        <ion-item [class.invalid-input]="!isSurnameValid">
+          <ion-label position="floating">Apellido</ion-label>
+          <ion-input
+            type="text"
+            [(ngModel)]="surname"
+            (ionInput)="validateSurname()"
+          ></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="password"></ion-input>
-    </ion-item>
+        <!-- Email -->
+        <ion-item [class.invalid-input]="!isEmailValid">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input
+            type="email"
+            [(ngModel)]="email"
+            (ionInput)="validateEmail()"
+          ></ion-input>
+        </ion-item>
 
-    <ion-button expand="block" (click)="register()">Registrarse</ion-button>
+        <!-- Contraseña -->
+        <ion-item [class.invalid-input]="!isPasswordValid && password">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="password"
+            (ionInput)="validatePassword()"
+          ></ion-input>
+          <ion-icon
+            slot="end"
+            [name]="showPassword ? 'eye' : 'eye-off'"
+            (click)="togglePasswordVisibility()"
+            class="password-toggle"
+          ></ion-icon>
+        </ion-item>
+        <ion-label class="remarks">
+          Obligatorio: 8 caracteres, 1 mayúscula y 1 número.
+        </ion-label>
 
-    <p class="login-text">
-      ¿Ya tienes cuenta?
-      <a routerLink="/login">Inicia sesión</a>
-    </p>
+        <!-- Confirmar Contraseña -->
+        <ion-item [class.invalid-input]="!passwordsMatch && confirmPassword">
+          <ion-label position="floating">Confirmar Contraseña</ion-label>
+          <ion-input
+            [type]="showConfirmPassword ? 'text' : 'password'"
+            [(ngModel)]="confirmPassword"
+            (ionInput)="checkPasswords()"
+          ></ion-input>
+          <ion-icon
+            slot="end"
+            [name]="showConfirmPassword ? 'eye' : 'eye-off'"
+            (click)="toggleConfirmPasswordVisibility()"
+            class="password-toggle"
+          ></ion-icon>
+        </ion-item>
+      </div>
+
+      <!-- Botón principal -->
+      <ion-button expand="block" class="register-button" (click)="register()">
+        Registrarse
+      </ion-button>
+
+      <!-- Texto inferior -->
+      <p class="login-text">
+        ¿Ya tienes cuenta?
+        <a routerLink="/login">Inicia sesión</a>
+      </p>
+    </div>
   </div>
 </ion-content>

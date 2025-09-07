@@ -1,37 +1,54 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Nacho´s Points</ion-title>
+  <ion-toolbar class="header-toolbar">
+    <ion-title class="header-title">Nacho´s Points</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="login-content">
     <div class="login-container">
+      <!-- Icono superior -->
+      <div class="login-icon">
+        <ion-icon name="log-in-outline"></ion-icon>
+      </div>
+
       <h2>Inicia sesión</h2>
 
-      <ion-item>
-        <ion-label position="floating">Email</ion-label>
-        <ion-input type="email" [(ngModel)]="email"></ion-input>
-      </ion-item>
+      <div class="login-form">
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" [(ngModel)]="email"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input
-          [type]="showPassword ? 'text' : 'password'"
-          [(ngModel)]="password"
-        >
-        </ion-input>
-        <ion-icon
-          [name]="showPassword ? 'eye' : 'eye-off'"
-          slot="end"
-          class="password-toggle"
-          (click)="togglePasswordVisibility()"
-        >
-        </ion-icon>
-      </ion-item>
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="password"
+          >
+          </ion-input>
+          <ion-icon
+            [name]="showPassword ? 'eye' : 'eye-off'"
+            slot="end"
+            class="password-toggle"
+            (click)="togglePasswordVisibility()"
+          >
+          </ion-icon>
+        </ion-item>
+      </div>
 
+      <!-- Botones -->
       <ion-button expand="block" (click)="login()">Iniciar sesión</ion-button>
+      <ion-button
+        expand="block"
+        fill="clear"
+        color="medium"
+        (click)="forgotPassword()"
+      >
+        ¿Has olvidado tu contraseña?
+      </ion-button>
 
+      <!-- Registro -->
       <p class="register-text">
         ¿No tienes cuenta?
         <a (click)="goToRegister()">Regístrate</a>

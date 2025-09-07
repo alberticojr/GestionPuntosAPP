@@ -1,8 +1,8 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Inicio</ion-title>
+  <ion-toolbar class="header-toolbar">
+    <ion-title class="header-title">Inicio</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="logout()">
+      <ion-button class="header-button" (click)="logout()">
         <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -11,38 +11,47 @@
 
 <ion-content [fullscreen]="false">
   <div class="home-content">
+    <!-- Card de usuario -->
     <div class="user-card" *ngIf="user">
-      <h2>Bienvenido, {{ user.name }} {{ user.surname }}</h2>
-      <p><strong>Email:</strong> {{ user.email }}</p>
-      <p><strong>Tipo:</strong> {{ user.type }}</p>
-
-      <!-- Puntos en círculos -->
-      <h2>Puntos</h2>
-      <div class="points-container">
-        <div
-          *ngFor="let point of pointsArray; let i = index"
-          [class.filled]="i < user.points % 10"
-          class="point"
-        ></div>
+      <!-- Icono de usuario -->
+      <div class="user-icon">
+        <ion-icon name="person-circle-outline"></ion-icon>
       </div>
 
-      <!-- Combos con iconos -->
-      <h2>Combos</h2>
+      <h2 class="welcome-title">
+        Bienvenido, {{ user.name }} {{ user.surname }}
+      </h2>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <hr />
+      <p class="info-text">
+        Aqui puedes ver tanto los puntos como los combos que tienes acumulados.
+      </p>
+
+      <!-- Puntos -->
+      <h2 class="section-title">Puntos</h2>
+      <div class="points-container">
+        <img
+          *ngFor="let point of pointsArray; let i = index"
+          [src]="i < user.points % 10 ? 'assets/img/hamburguesaRellena.png' : 'assets/img/hamburguesaVacia.png'"
+          class="point-img"
+        />
+      </div>
+
+      <!-- Combos -->
+      <h2 class="section-title">Combos</h2>
 
       @if (user.combos === 0) {
-      <p>No tienes combos aún. ¡Sigue acumulando puntos!</p>
+      <p class="no-combos">No tienes combos aún. ¡Sigue acumulando puntos!</p>
       } @else {
-
       <div class="combos-container">
         @for (combo of combosArray; track combo._id) {
-        <div class="combo-container">
-          <ion-icon name="trophy" class="combo-icon"> </ion-icon>
-        </div>
+        <img src="assets/img/combo.png" alt="combo" class="combo-container" />
         }
       </div>
       }
     </div>
 
+    <!-- Cargando usuario -->
     <div *ngIf="!user">
       <p>Cargando datos del usuario...</p>
     </div>

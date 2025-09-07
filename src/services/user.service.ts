@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { environment } from '../environments/environment';
 
 export interface User {
   _id: string;
@@ -39,7 +40,7 @@ export class UserService {
     return token ? { headers: { Authorization: `Bearer ${token}` } } : {};
   }
 
-  private apiUrl = 'http://localhost:5000/api/users';
+  private apiUrl = environment.apiUrl + '/api/users';
 
   constructor(private http: HttpClient) {}
 

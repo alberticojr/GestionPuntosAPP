@@ -5,6 +5,7 @@ import {
   UserService,
   UserResponse,
 } from '../../../services/user.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-admin.home',
@@ -17,14 +18,19 @@ export class AdminHomePage implements OnInit {
   searchTerm: string = '';
   currentPage: number = 1;
   totalPages: number = 1; // inicializamos a 1 para evitar undefined
-  pageSize: number = 5;
+  pageSize: number = 10;
   loading: boolean = false;
 
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.loadUsers();
     console.log(this.allUsers);
+    console.log('AdminHomePage cargada: ' + this.authService.isAdmin());
   }
 
   // Cargar usuarios desde backend

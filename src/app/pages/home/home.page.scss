@@ -1,71 +1,190 @@
+/* ===== Layout General ===== */
 .home-content {
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
+  padding: 20px;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
+/* ===== Header ===== */
+.header-toolbar {
+  --background: var(--color-secundario); /* Marrón madera */
+  --color: white;
+}
+
+.header-title {
+  font-weight: bold;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+.header-button {
+  ion-icon {
+    font-size: 1.5rem;
+    color: #f39c12;
+  }
+}
+
+/* ===== Card Usuario ===== */
 .user-card {
-  background-color: #f5f5f5;
-  padding: 25px;
-  border-radius: 15px;
+  background: var(--color-card);
+  padding: 22px 20px;
+  border-radius: 16px;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 400px;
+  box-shadow: var(--shadow-suave);
+  border: 1px solid #e0d3c2;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  animation: slideUp 0.7s ease-in-out;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  /* Solución al problema: altura máxima + scroll interno */
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
-.user-card h2 {
+.user-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-fuerte);
+}
+
+/* ===== Icono Usuario ===== */
+.user-icon {
+  font-size: 4rem;
+  color: var(--color-principal);
+  margin-bottom: 12px;
+  animation: slideUp 0.8s ease;
+}
+
+.welcome-title {
   margin-bottom: 15px;
-  color: var(--ion-color-primary);
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--color-secundario);
 }
 
 .user-card p {
   margin: 5px 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  color: var(--color-texto);
 }
 
-/* Puntos circulares */
+/* ===== Títulos de sección ===== */
+.section-title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--color-principal);
+}
+
+.info-text {
+  font-size: 0.95rem;
+  color: var(--color-texto);
+  padding: 10px;
+  line-height: 1.4;
+  animation: fadeIn 1s ease;
+  border: 1.5px solid #b8b4ad;
+  border-radius: 12px;
+  background-color: #f5e08d;
+}
+
+/* ===== Puntos circulares ===== */
 .points-container {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
-  gap: 8px;
+  margin: 15px 0 25px;
+  gap: 10px;
 }
 
 .point {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  background-color: lightgray;
-  transition: background-color 0.3s ease;
+  background-color: #ddd;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .point.filled {
-  background-color: var(--ion-color-primary);
+  background-color: var(--color-principal);
+  transform: scale(1.15);
+  animation: pop 1.2s ease;
 }
 
-/* Combos */
+/* ===== Combos ===== */
 .combos-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 15px;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .combo-container {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  padding: 5px 5px;
-  border-radius: 12px;
-  border: 2px solid gold;
+  align-items: center;
+  width: 54px;
+  height: 54px;
+  background: #fffdf5;
+  transition: transform 0.2s ease;
+  animation: pop 1.2s ease;
 }
 
-.combo-icon {
-  font-size: 28px;
-  color: gold;
+.combo-container:hover {
+  transform: scale(1.1);
+}
+
+/* ===== Texto cuando no hay combos ===== */
+.no-combos {
+  color: var(--color-texto);
+  font-size: 0.95rem;
+  margin-top: 8px;
+}
+
+.point-img {
+  width: 22px;
+  height: 22px;
+  transform: scale(1.15);
+  animation: pop 1.2s ease;
+}
+
+/* ===== Animaciones ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

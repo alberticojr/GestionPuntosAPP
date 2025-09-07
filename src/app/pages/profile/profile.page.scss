@@ -15,7 +15,7 @@
 
 .header-title {
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1.3srem;
   letter-spacing: 1px;
 }
 .header-button {
@@ -99,8 +99,10 @@
 }
 
 .action-button {
-  --background: var(--color-principal); /* Naranja hamburguesa */
-  --background-hover: var(--color-principal-2);
+  --background: var(--color-principal); /* color base */
+  --background-hover: var(--color-principal-2); /* al pasar el ratón */
+  --background-activated: var(--color-principal-2); /* cuando haces clic */
+  --background-focused: var(--color-principal-2); /* cuando queda en foco */
   --color: white;
   --border-radius: 12px;
   min-width: 190px;
@@ -109,7 +111,7 @@
   text-transform: none;
   border-radius: 12px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-  transition: transform 0.15s ease-in-out;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .action-button:hover {
@@ -119,4 +121,78 @@
 /* ===== Iconos generales ===== */
 ion-icon {
   font-size: 1.3rem;
+}
+
+/* ===== Animaciones keyframes ===== */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes buttonClick {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(0.92);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ===== Aplicación de animaciones ===== */
+.profile-card {
+  animation: fadeSlideUp 0.6s ease forwards;
+}
+
+.avatar ion-icon {
+  animation: bounceIn 0.7s ease;
+}
+
+.card-title,
+.user-type {
+  animation: slideDownFade 0.6s ease;
+}
+
+/* Hover con brillo */
+.action-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+/* Click con rebote */
+.action-button:active {
+  animation: buttonClick 0.25s ease;
 }

@@ -1,53 +1,137 @@
+/* ===== Layout General ===== */
 .login-content {
+  --background: var(--color-fondo);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
+  padding: 20px;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
+/* ===== Header ===== */
+.header-toolbar {
+  --background: var(--color-secundario); /* Marrón madera */
+  --color: white;
+}
+
+.header-title {
+  font-weight: bold;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+/* ===== Caja principal ===== */
 .login-container {
-  width: 90%;
-  max-width: 400px;
+  width: 100%;
+  max-width: 380px;
   text-align: center;
-  padding: 40px;
-  border: 2px solid grey;
-  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 5%;
+  padding: 32px 28px;
+  background: var(--color-card);
+  border-radius: 16px;
+  box-shadow: var(--shadow-suave);
+  border: 1px solid #e0d3c2;
+  box-shadow: var(--shadow-fuerte);
 }
 
+/* ===== Icono superior ===== */
+.login-icon {
+  font-size: 3rem;
+  color: var(--color-principal);
+  margin-bottom: 12px;
+  animation: fadeIn 1s ease;
+}
+
+/* ===== Título ===== */
 .login-container h2 {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--color-secundario);
+  letter-spacing: 1px;
 }
 
-.login-container ion-item {
-  margin-bottom: 15px;
+/* ===== Inputs ===== */
+.login-form ion-item {
+  margin-bottom: 18px;
+  --highlight-color-focused: var(--color-principal);
+  border-radius: 8px;
 }
 
+ion-label {
+  color: var(--color-secundario);
+}
+
+ion-input {
+  color: var(--color-texto);
+}
+
+/* ===== Botones ===== */
 .login-container ion-button {
-  margin-top: 10px;
+  margin-top: 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow-suave);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.login-container ion-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-fuerte);
+}
+
+/* ===== Toggle de contraseña ===== */
 .password-toggle {
   font-size: 22px;
   cursor: pointer;
-  align-self: center; // <-- centra verticalmente dentro de ion-item
-  color: var(--ion-color-medium);
-  transition: 0.15s ease-in-out;
+  color: var(--color-texto);
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .password-toggle:hover {
-  color: var(--ion-color-primary);
-  scale: 1.2;
+  color: var(--color-principal);
+  transform: scale(1.2);
 }
 
+/* ===== Texto de registro ===== */
 .register-text {
-  margin-top: 15px;
-  font-size: 0.9rem;
+  margin-top: 18px;
+  font-size: 0.95rem;
+  color: var(--color-texto);
 }
 
 .register-text a {
-  color: var(--ion-color-primary);
+  color: var(--color-principal);
   text-decoration: none;
   font-weight: bold;
+  transition: color 0.2s ease;
+}
+
+.register-text a:hover {
+  color: var(--color-principal-2);
+}
+
+/* ===== Animaciones ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

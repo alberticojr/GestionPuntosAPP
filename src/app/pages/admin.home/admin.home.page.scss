@@ -62,23 +62,24 @@
 
 /* ===== Tarjeta usuario ===== */
 .user-card {
-  max-width: 500px;
-  margin: 16px 16px;
+  min-width: 320px;
+  max-width: 550px;
+  margin: 8px 8px;
   border-radius: 12px;
-  box-shadow: var(--shadow-suave);
   background: var(--color-card);
   border: 1px solid #e0d3c2;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--shadow-suave);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: fadeSlideUp 0.4s ease forwards;
 }
 
 .user-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px) scale(1.01);
   box-shadow: var(--shadow-fuerte);
 }
 
 .user-card-content {
-  padding: 12px;
+  padding: 5px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -86,41 +87,166 @@
 
 /* ===== Item interno ===== */
 .user-item {
-  background: transparent;
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 8px 0;
 }
 
-/* Avatar/Icono */
+.user-avatar {
+  flex: 0 0 auto; /* fijo */
+}
+
+/* Avatar animado */
 .user-avatar ion-icon {
   font-size: 3rem;
   color: var(--color-principal);
+  transition: transform 0.3s ease;
 }
 
-/* Información principal */
+.user-avataradmin ion-icon {
+  font-size: 3rem;
+  color: red;
+  transition: transform 0.3s ease;
+}
+
+.user-card:hover .user-avatar ion-icon {
+  transform: rotate(-5deg) scale(1.1);
+}
+
 .user-info {
-  margin-left: 12px;
+  flex: 1 1 auto; /* ocupa todo el espacio central */
+  min-width: 0; /* importante para que no empuje stats */
+  overflow: hidden;
 }
 
 .user-name {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: bold;
   margin: 0;
   color: var(--color-secundario);
+  white-space: normal; /* permite saltos de línea */
+  word-break: break-word; /* rompe si es demasiado largo */
 }
 
 .user-email {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--color-texto);
   margin: 4px 0 0;
+  white-space: normal;
+  word-break: break-word;
 }
 
-/* Stats (puntos y combos) */
+.user-stats {
+  flex: 0 0 auto; /* fijo a la derecha */
+  text-align: right;
+  margin-left: auto;
+}
+
 .user-stats p {
   margin: 2px 0;
   font-size: 0.9rem;
   color: var(--color-principal);
   font-weight: 500;
+}
+
+/* ===== Footer compacto ===== */
+/* Footer animado */
+.pagination-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  --background: transparent;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.08);
+  animation: slideUpFooter 0.5s ease;
+}
+
+.pagination-toolbar {
+  --background: var(--color-secundario);
+  height: 48px; /* más compacto para móvil */
+  border-radius: 12px 12px 0 0;
+  padding: 0 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Texto del paginador */
+.pagination-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--color-fondo);
+  text-align: center;
+}
+
+/* Botones compactos */
+.pagination-btn {
+  --background: var(--color-principal);
+  --color: white;
+  min-width: 36px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.pagination-btn:hover {
+  transform: scale(1.05);
+}
+
+.pagination-btn[disabled] {
+  opacity: 0.5;
+  --background: #bbb;
+}
+
+/* Botones con efecto pulse al hacer hover/click */
+.pagination-btn:hover:not([disabled]) {
+  animation: pulse 0.4s ease;
+}
+
+.pagination-btn:active {
+  transform: scale(0.95);
+}
+
+.pagination-btn ion-icon {
+  font-size: 1.2rem;
+}
+
+/* ===== Animaciones ===== */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpFooter {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
 }

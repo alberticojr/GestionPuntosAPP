@@ -30,17 +30,22 @@
           <div class="user-item">
             <!-- Icono de usuario -->
             <div class="user-avatar">
-              <ion-icon name="person-circle-outline"></ion-icon>
+              <ion-icon
+                name="person-circle-outline"
+                [style.color]="user.type === 'admin' ? '#3498db' : '#e67e22'"
+              ></ion-icon>
             </div>
 
             <!-- Nombre y correo -->
             <div class="user-info">
-              <h2 class="user-name">{{ user.name }} {{ user.surname }}</h2>
+              <ion-label class="user-name"
+                >{{ user.name }} {{ user.surname }}</ion-label
+              >
               <p class="user-email">{{ user.email }}</p>
             </div>
 
             <!-- Puntos y combos -->
-            <div>
+            <div class="user-stats">
               <p><strong>Puntos:</strong> {{ user.points }}</p>
               <p><strong>Combos:</strong> {{ user.combos }}</p>
             </div>
@@ -50,24 +55,29 @@
     </ion-list>
 
     <!-- Paginación -->
-    <ion-footer>
-      <ion-toolbar>
+    <ion-footer class="pagination-footer">
+      <ion-toolbar class="pagination-toolbar">
         <ion-buttons slot="start">
-          <ion-button (click)="prevPage()" [disabled]="currentPage === 1">
-            Anterior
+          <ion-button
+            class="pagination-btn"
+            (click)="prevPage()"
+            [disabled]="currentPage === 1"
+          >
+            <ion-icon name="chevron-back-outline"></ion-icon>Anterior
           </ion-button>
         </ion-buttons>
 
-        <ion-title class="ion-text-center">
-          Página {{ currentPage }} / {{ totalPages }}
+        <ion-title class="pagination-title">
+          {{ currentPage }} / {{ totalPages }}
         </ion-title>
 
         <ion-buttons slot="end">
           <ion-button
+            class="pagination-btn"
             (click)="nextPage()"
             [disabled]="currentPage === totalPages"
-          >
-            Siguiente
+            >Siguiente
+            <ion-icon name="chevron-forward-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
       </ion-toolbar>

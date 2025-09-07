@@ -22,11 +22,17 @@
           </ion-row>
 
           <ion-row>
-            <ion-card-title class="card-title">{{ user.name }}</ion-card-title>
+            <ion-card-title class="card-title"
+              >{{ user.name }} {{ user.surname }}</ion-card-title
+            >
           </ion-row>
 
           <ion-row>
-            <p class="user-type">{{ user.type }}</p>
+            @if (user.type === "user"){
+            <p class="user-type">Usuario</p>
+            } @else if (user.type === "admin") {
+            <p class="user-type">Administrador</p>
+            }
           </ion-row>
         </ion-grid>
       </ion-card-header>
