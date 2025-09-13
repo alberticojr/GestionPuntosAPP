@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService, User } from '../../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -13,15 +14,15 @@ export class ProfilePage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     const userId = this.route.snapshot.paramMap.get('id');
     if (userId) {
       this.userService.getUserById(userId).subscribe({
-        next: (res) =>
-          (this.user = res), //console.log('Usuario cargado:', this.user)
+        next: (res) => (this.user = res), //console.log('Usuario cargado:', this.user)
 
         error: (err) => console.error('Error al obtener usuario', err),
       });
@@ -77,6 +78,6 @@ export class ProfilePage implements OnInit {
   }
 
   goBack() {
-    window.history.back();
+    this.router.navigate(['/admin-home']);
   }
 }
