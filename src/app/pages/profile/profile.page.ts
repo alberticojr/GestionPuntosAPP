@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ProfilePage implements OnInit {
   user: User | null = null;
+  private userId: string | null = null;
+  loading: boolean = false; // Para feedback visual opcional
 
   constructor(
     private route: ActivatedRoute,
@@ -19,64 +21,61 @@ export class ProfilePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    const userId = this.route.snapshot.paramMap.get('id');
-    if (userId) {
-      this.userService.getUserById(userId).subscribe({
-        next: (res) => (this.user = res), //console.log('Usuario cargado:', this.user)
-
-        error: (err) => console.error('Error al obtener usuario', err),
-      });
+    this.userId = this.route.snapshot.paramMap.get('id');
+    if (this.userId) {
+      this.refreshUser();
     }
   }
 
+  /** 🔄 Recargar datos del usuario */
+  private refreshUser() {
+    if (!this.userId) return;
+    this.loading = true;
+    this.userService.getUserById(this.userId).subscribe({
+      next: (res) => {
+        this.user = res;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error al obtener usuario', err);
+        this.loading = false;
+      },
+    });
+  }
+
+  /** 🟢 Añadir puntos */
   addPoints(userId: string, amount: number) {
-    if (userId) {
-      this.userService.addPoints(userId, amount).subscribe({
-        next: (res) => {
-          this.user = res;
-          //console.log('Puntos añadidos:', this.user);
-        },
-        error: (err) => console.error('Error al añadir puntos', err),
-      });
-    }
+    this.userService.addPoints(userId, amount).subscribe({
+      next: () => this.refreshUser(),
+      error: (err) => console.error('Error al añadir puntos', err),
+    });
   }
 
+  /** 🔴 Restar puntos */
   subtractPoints(userId: string, amount: number) {
-    if (userId) {
-      this.userService.subtractPoints(userId, amount).subscribe({
-        next: (res) => {
-          this.user = res;
-          //console.log('Puntos restados:', this.user);
-        },
-        error: (err) => console.error('Error al restar puntos', err),
-      });
-    }
+    this.userService.subtractPoints(userId, amount).subscribe({
+      next: () => this.refreshUser(),
+      error: (err) => console.error('Error al restar puntos', err),
+    });
   }
 
+  /** 🟢 Añadir combo */
   addCombo(userId: string, amount: number) {
-    if (userId) {
-      this.userService.addCombo(userId, amount).subscribe({
-        next: (res) => {
-          this.user = res;
-          //console.log('Combos añadidos:', this.user);
-        },
-        error: (err) => console.error('Error al añadir combos', err),
-      });
-    }
+    this.userService.addCombo(userId, amount).subscribe({
+      next: () => this.refreshUser(),
+      error: (err) => console.error('Error al añadir combos', err),
+    });
   }
 
+  /** 🔴 Restar combo */
   subtractCombo(userId: string, amount: number) {
-    if (userId) {
-      this.userService.subtractCombo(userId, amount).subscribe({
-        next: (res) => {
-          this.user = res;
-          //console.log('Combos restados:', this.user);
-        },
-        error: (err) => console.error('Error al restar combos', err),
-      });
-    }
+    this.userService.subtractCombo(userId, amount).subscribe({
+      next: () => this.refreshUser(),
+      error: (err) => console.error('Error al restar combos', err),
+    });
   }
 
+  /** ⬅️ Volver al home de admin */
   goBack() {
     this.router.navigate(['/admin-home']);
   }

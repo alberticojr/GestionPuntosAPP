@@ -9,8 +9,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="user">
-  <div class="profile-content">
+<ion-content>
+  <div class="profile-content" *ngIf="user; else loadingTemplate">
     <ion-card class="profile-card">
       <!-- Encabezado con nombre y tipo -->
       <ion-card-header class="card-header">
@@ -22,31 +22,34 @@
           </ion-row>
 
           <ion-row>
-            <ion-card-title class="card-title"
-              >{{ user.name }} {{ user.surname }}</ion-card-title
-            >
+            <ion-card-title class="card-title">
+              {{ user.name }} {{ user.surname }}
+            </ion-card-title>
           </ion-row>
 
           <ion-row>
-            @if (user.type === "user"){
-            <p class="user-type">Usuario</p>
-            } @else if (user.type === "admin") {
-            <p class="user-type">Administrador</p>
-            }
+            <p class="user-type" *ngIf="user.type === 'user'">Usuario</p>
+            <p class="user-type" *ngIf="user.type === 'admin'">Administrador</p>
           </ion-row>
         </ion-grid>
       </ion-card-header>
 
       <!-- Información principal -->
       <ion-card-content class="card-content">
-        <div class="info-section">
+        <!-- 🔄 Loader mientras se actualiza -->
+        <div *ngIf="loading" class="spinner-container">
+          <ion-spinner name="crescent"></ion-spinner>
+          <p>Actualizando...</p>
+        </div>
+
+        <div class="info-section" *ngIf="!loading">
           <p class="user-info"><strong>Email:</strong> {{ user.email }}</p>
           <p class="user-info"><strong>Puntos:</strong> {{ user.points }}</p>
           <p class="user-info"><strong>Combos:</strong> {{ user.combos }}</p>
         </div>
 
         <!-- Acciones -->
-        <div class="button-group">
+        <div class="button-group" *ngIf="!loading">
           <ion-button class="action-button" (click)="addPoints(user._id, 1)">
             +1 Punto
           </ion-button>
@@ -69,4 +72,12 @@
       </ion-card-content>
     </ion-card>
   </div>
+
+  <!-- 🔄 Loader inicial mientras carga el usuario -->
+  <ng-template #loadingTemplate>
+    <div class="spinner-container">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando usuario...</p>
+    </div>
+  </ng-template>
 </ion-content>

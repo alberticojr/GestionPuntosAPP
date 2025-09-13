@@ -118,6 +118,19 @@
   transform: scale(1.05);
 }
 
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  text-align: center;
+
+  ion-spinner {
+    margin-bottom: 10px;
+  }
+}
+
 /* ===== Iconos generales ===== */
 ion-icon {
   font-size: 1.3rem;

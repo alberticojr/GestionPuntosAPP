@@ -94,16 +94,21 @@ export class AdminHomePage {
   }
 
   async escanearQR() {
+    const permission = await BarcodeScanner.requestPermissions();
+
+    if (permission.camera !== 'granted') {
+      console.error('Permiso de cámara no concedido');
+      return;
+    }
+
     const { barcodes } = await BarcodeScanner.scan();
 
     if (barcodes.length > 0) {
       const scannedData = barcodes[0].rawValue;
 
-      // esperado: "/profile/66f84f0d12345"
       if (scannedData.startsWith('/profile/')) {
         this.router.navigateByUrl(scannedData);
       } else {
-        // fallback: si solo viene el id
         this.router.navigate(['/profile', scannedData]);
       }
     }

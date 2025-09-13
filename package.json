@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration production",
     "postbuild": "cpx _redirects www",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
