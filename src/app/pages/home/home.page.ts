@@ -12,8 +12,8 @@ import { environment } from 'src/environments/environment';
 })
 export class HomePage implements OnInit {
   user: User | null = null;
-  combosArray: any[] = []; // Ejemplo de array de combos
-  pointsArray: any[] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; // Ejemplo de array de puntos
+  combosArray: any[] = [];
+  pointsArray: any[] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   userUrl!: string;
   mostrarCodigoQR: boolean = false;
 
@@ -24,11 +24,14 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Suponemos que el AuthService tiene un método para obtener el ID del usuario actual
-    const userId = this.userService.getCurrentUserId();
+    this.loadUserData();
+  }
 
-    //console.log('User ID:', userId);
+  // Nueva función para cargar los datos del usuario
+  loadUserData() {
+    const userId = this.userService.getCurrentUserId();
     if (userId) {
+      this.user = null; // Reset mientras carga para mostrar el spinner
       this.userService.getUserById(userId).subscribe({
         next: (res) => {
           this.user = res;
@@ -36,15 +39,18 @@ export class HomePage implements OnInit {
             { length: this.user.combos },
             (_, i) => i
           );
+          this.userUrl = `${environment.frontUrl}/profile/${userId}`;
         },
         error: (err) => {
           console.error('Error al obtener usuario:', err);
         },
       });
     }
+  }
 
-    // Construir la URL del usuario
-    this.userUrl = `${environment.frontUrl}/profile/${userId}`;
+  // Refrescar datos manualmente desde el botón
+  refreshUserData() {
+    this.loadUserData();
   }
 
   switchCodigoQR() {
@@ -55,6 +61,5 @@ export class HomePage implements OnInit {
     localStorage.removeItem('token');
     this.user = null;
     this.router.navigate(['/login']);
-    //console.log('Usuario desconectado');
   }
 }
