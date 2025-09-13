@@ -7,13 +7,15 @@ import {
 } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
 
+import { BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
+
 @Component({
   selector: 'app-admin.home',
   templateUrl: './admin.home.page.html',
   styleUrls: ['./admin.home.page.scss'],
   standalone: false,
 })
-export class AdminHomePage implements OnInit {
+export class AdminHomePage {
   allUsers: User[] = [];
   searchTerm: string = '';
   currentPage: number = 1;
@@ -27,7 +29,7 @@ export class AdminHomePage implements OnInit {
     private authService: AuthService
   ) {}
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.loadUsers();
     //console.log(this.allUsers);
     //console.log('AdminHomePage cargada: ' + this.authService.isAdmin());
@@ -89,5 +91,21 @@ export class AdminHomePage implements OnInit {
   nextPage() {
     if (this.currentPage < this.totalPages)
       this.loadUsers(this.currentPage + 1);
+  }
+
+  async escanearQR() {
+    const { barcodes } = await BarcodeScanner.scan();
+
+    if (barcodes.length > 0) {
+      const scannedData = barcodes[0].rawValue;
+
+      // esperado: "/profile/66f84f0d12345"
+      if (scannedData.startsWith('/profile/')) {
+        this.router.navigateByUrl(scannedData);
+      } else {
+        // fallback: si solo viene el id
+        this.router.navigate(['/profile', scannedData]);
+      }
+    }
   }
 }

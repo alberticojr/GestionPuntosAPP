@@ -1,7 +1,10 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="false">
   <ion-toolbar class="header-toolbar">
     <ion-title class="header-title">Inicio</ion-title>
     <ion-buttons slot="end">
+      <ion-button class="header-button" (click)="switchCodigoQR()"
+        ><ion-icon name="qr-code-outline"></ion-icon
+      ></ion-button>
       <ion-button class="header-button" (click)="logout()">
         <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
       </ion-button>
@@ -9,10 +12,37 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="false">
+<ion-content [fullscreen]="false" scrollY="true">
   <div class="home-content">
+    <!-- Código QR -->
+    @if(mostrarCodigoQR) {
+    <div class="qr-code-container">
+      <ion-card class="qr-card">
+        <ion-card-header>
+          <ion-card-title class="qr-title"> Tu Código QR </ion-card-title>
+          <ion-card-subtitle class="qr-subtitle"
+            >Muestra este QR para que te acumulen puntos.</ion-card-subtitle
+          >
+        </ion-card-header>
+        <ion-card-content class="qr-card-content">
+          <div class="qr-wrapper">
+            <qrcode
+              [qrdata]="userUrl"
+              [width]="180"
+              [errorCorrectionLevel]="'M'"
+            ></qrcode>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    }
     <!-- Card de usuario -->
-    <div class="user-card" *ngIf="user">
+    <div
+      class="user-card"
+      *ngIf="user"
+      [ngClass]="{ 'deslizar-abajo': mostrarCodigoQR }"
+    >
       <!-- Icono de usuario -->
       <div class="user-icon">
         <ion-icon name="person-circle-outline"></ion-icon>

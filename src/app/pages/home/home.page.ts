@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService, User } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,8 @@ export class HomePage implements OnInit {
   user: User | null = null;
   combosArray: any[] = []; // Ejemplo de array de combos
   pointsArray: any[] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; // Ejemplo de array de puntos
+  userUrl!: string;
+  mostrarCodigoQR: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -23,6 +26,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
     // Suponemos que el AuthService tiene un método para obtener el ID del usuario actual
     const userId = this.userService.getCurrentUserId();
+
     //console.log('User ID:', userId);
     if (userId) {
       this.userService.getUserById(userId).subscribe({
@@ -38,6 +42,13 @@ export class HomePage implements OnInit {
         },
       });
     }
+
+    // Construir la URL del usuario
+    this.userUrl = `${environment.frontUrl}/profile/${userId}`;
+  }
+
+  switchCodigoQR() {
+    this.mostrarCodigoQR = !this.mostrarCodigoQR;
   }
 
   logout() {
