@@ -27,7 +27,7 @@ export class ProfilePage implements OnInit {
     }
   }
 
-  /** 🔄 Recargar datos del usuario */
+  /**  Recargar datos del usuario */
   private refreshUser() {
     if (!this.userId) return;
     this.loading = true;
@@ -43,7 +43,7 @@ export class ProfilePage implements OnInit {
     });
   }
 
-  /** 🟢 Añadir puntos */
+  /** Añadir puntos */
   addPoints(userId: string, amount: number) {
     this.userService.addPoints(userId, amount).subscribe({
       next: () => this.refreshUser(),
@@ -51,7 +51,7 @@ export class ProfilePage implements OnInit {
     });
   }
 
-  /** 🔴 Restar puntos */
+  /** Restar puntos */
   subtractPoints(userId: string, amount: number) {
     this.userService.subtractPoints(userId, amount).subscribe({
       next: () => this.refreshUser(),
@@ -59,7 +59,7 @@ export class ProfilePage implements OnInit {
     });
   }
 
-  /** 🟢 Añadir combo */
+  /** Añadir combo */
   addCombo(userId: string, amount: number) {
     this.userService.addCombo(userId, amount).subscribe({
       next: () => this.refreshUser(),
@@ -67,7 +67,7 @@ export class ProfilePage implements OnInit {
     });
   }
 
-  /** 🔴 Restar combo */
+  /** Restar combo */
   subtractCombo(userId: string, amount: number) {
     this.userService.subtractCombo(userId, amount).subscribe({
       next: () => this.refreshUser(),
@@ -77,6 +77,6 @@ export class ProfilePage implements OnInit {
 
   /** ⬅️ Volver al home de admin */
   goBack() {
-    this.router.navigate(['/admin-home']);
+    this.router.navigate(['/admin.home']);
   }
 }
