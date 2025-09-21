@@ -9,7 +9,7 @@
 
 /* ===== Header ===== */
 .header-toolbar {
-  --background: var(--color-secundario); /* Marrón madera */
+  --background: var(--color-bandas); /* Marrón madera */
   --color: white;
 }
 
@@ -31,7 +31,7 @@
   max-width: 400px;
   border-radius: 20px;
   box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
-  background: #fffaf4;
+  background: var(--color-card);
   border: 1px solid #e0d3c2;
   overflow: hidden;
   text-align: center;
@@ -41,7 +41,7 @@
 .card-header {
   padding: 5px 16px;
   border-bottom: 1px solid #e0d3c2;
-  background: linear-gradient(135deg, var(--color-secundario), #6e443d);
+  background: linear-gradient(135deg, var(--color-bandas), #6e443d);
   color: white;
   //border: 2px solid purple;
 
@@ -63,7 +63,7 @@
   font-weight: bold;
   margin: 0;
   letter-spacing: 1px;
-  color: var(--color-fondo);
+  color: var(--color-otro);
   //border: 2px solid purple;
 }
 
@@ -71,7 +71,7 @@
   margin-top: 6px;
   font-size: 0.95rem;
   font-weight: 500;
-  color: var(--color-fondo);
+  color: var(--color-otro);
   //border: 2px solid purple;
 }
 
@@ -82,6 +82,14 @@
 
 .info-section {
   margin-bottom: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .info-section {
+    p {
+      color: var(--color-texto);
+    }
+  }
 }
 
 .user-info {

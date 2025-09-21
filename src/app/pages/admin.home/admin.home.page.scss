@@ -11,7 +11,7 @@
 
 /* ===== Header ===== */
 .header-toolbar {
-  --background: var(--color-secundario);
+  --background: var(--color-bandas);
   --color: white;
 }
 
@@ -166,7 +166,7 @@
 }
 
 .pagination-toolbar {
-  --background: var(--color-secundario);
+  --background: var(--color-bandas);
   height: 48px; /* más compacto para móvil */
   border-radius: 12px 12px 0 0;
   padding: 0 6px;
@@ -179,7 +179,7 @@
 .pagination-title {
   font-size: 0.9rem;
   font-weight: bold;
-  color: var(--color-fondo);
+  color: var(--color-otro);
   text-align: center;
 }
 

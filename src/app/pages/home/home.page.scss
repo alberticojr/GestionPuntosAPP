@@ -15,7 +15,7 @@
 
 /* ===== Header ===== */
 .header-toolbar {
-  --background: var(--color-secundario); /* Marrón madera */
+  --background: var(--color-bandas); /* Marrón madera */
   --color: white;
 }
 
@@ -109,6 +109,12 @@
   background-color: #f5e08d;
 }
 
+@media (prefers-color-scheme: dark) {
+  .info-text {
+    background-color: var(--color-bandas);
+  }
+}
+
 /* ===== Puntos circulares ===== */
 .points-container {
   display: flex;
@@ -146,7 +152,6 @@
   align-items: center;
   width: 54px;
   height: 54px;
-  background: #fffdf5;
   transition: transform 0.2s ease;
   animation: pop 1.2s ease;
 }

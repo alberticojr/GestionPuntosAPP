@@ -36,15 +36,43 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
 
+/* 🎨 ===== Tema claro (por defecto) ===== */
 :root {
   --color-principal: #d35400; /* naranja hamburguesa */
   --color-principal-2: #e67e22; /* naranja claro */
   --color-secundario: #4a2c2a; /* marrón madera */
   --color-fondo: #f8f4ef; /* beige cálido */
+  --color-bandas: #4a2c2a;
+  --color-otro: #f8f4ef;
 
-  /* === Nuevos añadidos === */
-  --color-card: #ffffff; /* tarjetas claras con contraste suave */
-  --color-texto: #5a4a42; /* texto marrón-grisáceo legible */
-  --shadow-suave: 0px 2px 6px rgba(0, 0, 0, 0.1); /* sombra ligera */
-  --shadow-fuerte: 0px 6px 16px rgba(0, 0, 0, 0.2); /* sombra intensa */
+  --color-card: #ffffff; /* tarjetas claras */
+  --color-texto: #5a4a42; /* marrón-grisáceo legible */
+
+  --shadow-suave: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  --shadow-fuerte: 0px 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 🌙 ===== Tema oscuro automático ===== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-principal: #ff8f42; /* naranja brillante */
+    --color-principal-2: #ffa055; /* variante clara */
+    --color-secundario: #e0d6d2; /* marrón muy claro */
+    --color-fondo: #121212; /* fondo oscuro */
+    --color-bandas: #4a2c2a;
+    --color-otro: #f8f4ef;
+
+    --color-card: #1e1e1e; /* tarjetas oscuras */
+    --color-texto: #e8e6e3; /* texto claro */
+
+    --shadow-suave: 0px 2px 6px rgba(0, 0, 0, 0.6);
+    --shadow-fuerte: 0px 6px 16px rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* Transición suave */
+body,
+ion-content,
+.login-container {
+  transition: background 0.3s ease, color 0.3s ease;
 }

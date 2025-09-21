@@ -17,6 +17,8 @@ export class HomePage implements OnInit {
   userUrl!: string;
   mostrarCodigoQR: boolean = false;
 
+  isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
   constructor(
     private userService: UserService,
     private authService: AuthService,
@@ -25,6 +27,12 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.loadUserData();
+
+    window
+      .matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', (e) => {
+        this.isDarkMode = e.matches;
+      });
   }
 
   // Nueva función para cargar los datos del usuario

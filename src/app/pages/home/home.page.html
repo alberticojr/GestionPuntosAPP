@@ -49,7 +49,8 @@
       [ngClass]="{ 'deslizar-abajo': mostrarCodigoQR }"
     >
       <div class="user-icon">
-        <ion-icon name="person-circle-outline"></ion-icon>
+        <!--  <ion-icon name="person-circle-outline"></ion-icon>-->
+        <img src="../../../assets/logo2SF.PNG" alt="logo2" width="78rem" />
       </div>
 
       <h2 class="welcome-title">
@@ -60,17 +61,16 @@
       <p class="info-text">
         Aquí puedes ver tanto los puntos como los combos que tienes acumulados.
       </p>
-
       <!-- Puntos -->
       <h2 class="section-title">Puntos</h2>
       <div class="points-container">
         <img
           *ngFor="let point of pointsArray; let i = index"
           [src]="
-            i < user.points % 10
-              ? 'assets/img/hamburguesaRellena.png'
-              : 'assets/img/hamburguesaVacia.png'
-          "
+    i < user.points % 10
+      ? 'assets/img/hamburguesaRellena.png'
+      : (isDarkMode ? 'assets/img/hamburguesaBlanca.png' : 'assets/img/hamburguesaVacia.png')
+  "
           class="point-img"
         />
       </div>
