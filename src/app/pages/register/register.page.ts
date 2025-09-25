@@ -55,8 +55,8 @@ export class RegisterPage {
   }
 
   validatePassword() {
-    // Al menos 6 caracteres, 1 mayúscula, 1 número
-    const regex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    // Al menos 8 caracteres, 1 mayúscula, 1 número, acepta especiales
+    const regex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&.,;:_\-]{8,}$/;
     this.isPasswordValid = regex.test(this.password) || this.password === '';
   }
 
